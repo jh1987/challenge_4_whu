@@ -4,7 +4,7 @@ import os
 import openai
 
 # Load environment variables from .env file
-ALPHAVANTAGE_API_KEY = st.secrets["ALPHAVANTAGE_API_KEY"]
+ALPHAVANTAGE_API_KEY = st.secrets["ALPHAVANTAGE"]
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 openai.api_key = OPENAI_API_KEY
 
