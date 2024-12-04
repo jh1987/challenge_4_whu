@@ -4,9 +4,9 @@ import os
 import openai
 
 # Load environment variables from .env file
-os.environ['ALPHAVANTAGE_API_KEY'] = st.secrets("ALPHAVANTAGE_API_KEY")
-os.environ['OPENAI_API_KEY'] = st.secrets('OPENAI_API_KEY')
-openai.api_key = st.secrets('OPENAI_API_KEY')
+ALPHAVANTAGE_API_KEY = st.secrets["ALPHAVANTAGE_API_KEY"]
+OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+openai.api_key = OPENAI_API_KEY
 
 # Function to use GPT to classify the input as a company name or ticker symbol
 def classify_input(input_text):
@@ -41,7 +41,7 @@ def classify_input(input_text):
 
 # Function to fetch the ticker symbol based on a company name
 def get_ticker_symbol(company_name):
-    api_key = os.getenv("ALPHAVANTAGE_API_KEY")
+    api_key = ALPHAVANTAGE_API_KEY
     base_url = "https://www.alphavantage.co/query"
     params = {
         "function": "SYMBOL_SEARCH",
@@ -78,7 +78,7 @@ def get_ticker_symbol(company_name):
 
 # Function to fetch stock price using AlphaVantage API
 def get_stock_price(ticker):
-    api_key = os.getenv("ALPHAVANTAGE_API_KEY")
+    api_key = ALPHAVANTAGE_API_KEY
     intraday_base_url = "https://www.alphavantage.co/query"
     daily_base_url = "https://www.alphavantage.co/query"
 
@@ -111,7 +111,8 @@ def get_daily_stock_price(ticker):
     """
     Fetch daily stock price data as a fallback.
     """
-    api_key = os.getenv("ALPHAVANTAGE_API_KEY")
+    api_key = ALPHAVANTAGE_API_KEY
+    
     daily_base_url = "https://www.alphavantage.co/query"
     daily_params = {
         "function": "TIME_SERIES_DAILY",
