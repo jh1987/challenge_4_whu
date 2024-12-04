@@ -1,14 +1,12 @@
 import streamlit as st
-from dotenv import load_dotenv
 import requests
 import os
 import openai
 
 # Load environment variables from .env file
-load_dotenv('.env', override=True)
-os.environ['ALPHAVANTAGE_API_KEY'] = os.getenv('ALPHAVANTAGE_API_KEY')
-os.environ['OPENAI_API_KEY'] = os.getenv('OPENAI_API_KEY')
-openai.api_key = os.getenv('OPENAI_API_KEY')
+os.environ['ALPHAVANTAGE_API_KEY'] = st.secrets('ALPHAVANTAGE_API_KEY')
+os.environ['OPENAI_API_KEY'] = st.secrets('OPENAI_API_KEY')
+openai.api_key = st.secrets('OPENAI_API_KEY')
 
 # Function to use GPT to classify the input as a company name or ticker symbol
 def classify_input(input_text):
